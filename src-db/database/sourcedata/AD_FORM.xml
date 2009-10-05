@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<data>
+<!--DB11A21C046F48C2AF9457811EA8E290--><AD_FORM>
+<!--DB11A21C046F48C2AF9457811EA8E290-->  <AD_FORM_ID><![CDATA[DB11A21C046F48C2AF9457811EA8E290]]></AD_FORM_ID>
+<!--DB11A21C046F48C2AF9457811EA8E290-->  <AD_CLIENT_ID><![CDATA[0]]></AD_CLIENT_ID>
+<!--DB11A21C046F48C2AF9457811EA8E290-->  <AD_ORG_ID><![CDATA[0]]></AD_ORG_ID>
+<!--DB11A21C046F48C2AF9457811EA8E290-->  <ISACTIVE><![CDATA[Y]]></ISACTIVE>
+<!--DB11A21C046F48C2AF9457811EA8E290-->  <NAME><![CDATA[HQL Query Tool]]></NAME>
+<!--DB11A21C046F48C2AF9457811EA8E290-->  <DESCRIPTION><![CDATA[Supports entering HQL query through a web interface]]></DESCRIPTION>
+<!--DB11A21C046F48C2AF9457811EA8E290-->  <HELP><![CDATA[Allows a user to enter HQL queries in a window and see the results directly. The user manual can be found <a href="http://forge.openbravo.com/plugins/mwiki/index.php/Hqlquerytool/User_Manual">here</a>.
+
+Queries make use of the Entities and Properties of the entity model. The entity model can be viewed on this location: <a href="http://wiki.openbravo.com/wiki/ERP/2.50/Developers_Guide/Reference/Entity_Model">Entity Model</a>.]]></HELP>
+<!--DB11A21C046F48C2AF9457811EA8E290-->  <ACCESSLEVEL><![CDATA[4]]></ACCESSLEVEL>
+<!--DB11A21C046F48C2AF9457811EA8E290-->  <CLASSNAME><![CDATA[org.openbravo.utility.hqlquerytool.HQLQueryTool]]></CLASSNAME>
+<!--DB11A21C046F48C2AF9457811EA8E290-->  <AD_MODULE_ID><![CDATA[0CD06AFA024342CD94FDD9AB1ECDFC14]]></AD_MODULE_ID>
+<!--DB11A21C046F48C2AF9457811EA8E290--></AD_FORM>
+
+</data>
