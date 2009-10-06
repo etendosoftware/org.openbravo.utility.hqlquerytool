@@ -6,12 +6,15 @@
 <!--0CD06AFA024342CD94FDD9AB1ECDFC14-->  <AD_ORG_ID><![CDATA[0]]></AD_ORG_ID>
 <!--0CD06AFA024342CD94FDD9AB1ECDFC14-->  <ISACTIVE><![CDATA[Y]]></ISACTIVE>
 <!--0CD06AFA024342CD94FDD9AB1ECDFC14-->  <NAME><![CDATA[HQL Query Tool]]></NAME>
-<!--0CD06AFA024342CD94FDD9AB1ECDFC14-->  <VERSION><![CDATA[1.0.0]]></VERSION>
+<!--0CD06AFA024342CD94FDD9AB1ECDFC14-->  <VERSION><![CDATA[1.0.1]]></VERSION>
 <!--0CD06AFA024342CD94FDD9AB1ECDFC14-->  <DESCRIPTION><![CDATA[This module makes it possible to enter/try HQL queries directly in a web interface.]]></DESCRIPTION>
 <!--0CD06AFA024342CD94FDD9AB1ECDFC14-->  <HELP><![CDATA[Provides a tool for an administrator to enter and try HQL queries directly in Openbravo's web interface.]]></HELP>
-<!--0CD06AFA024342CD94FDD9AB1ECDFC14-->  <URL><![CDATA[http://forge.openbravo.com/projects/hqlquerytool]]></URL>
+<!--0CD06AFA024342CD94FDD9AB1ECDFC14-->  <URL><![CDATA[www.openbravo.com]]></URL>
 <!--0CD06AFA024342CD94FDD9AB1ECDFC14-->  <TYPE><![CDATA[M]]></TYPE>
-<!--0CD06AFA024342CD94FDD9AB1ECDFC14-->  <LICENSE><![CDATA[The Openbravo Public License Version 1.1 ("OBPL") consists of the Mozilla Public License Version 1.1, modified to be specific to Openbravo, with the Additional Terms in Exhibit B. The original Mozilla Public License 1.1 can be found at: http://www.mozilla.org/MPL/MPL-1.1.html]]></LICENSE>
+<!--0CD06AFA024342CD94FDD9AB1ECDFC14-->  <LICENSE><![CDATA[Licensed under the Openbravo Commercial License version 1.0.
+You may obtain a copy of the License at
+http://www.openbravo.com/legal/license.html
+or in the legal folder of the Openbravo ERP core distribution. ]]></LICENSE>
 <!--0CD06AFA024342CD94FDD9AB1ECDFC14-->  <JAVAPACKAGE><![CDATA[org.openbravo.utility.hqlquerytool]]></JAVAPACKAGE>
 <!--0CD06AFA024342CD94FDD9AB1ECDFC14-->  <LICENSETYPE><![CDATA[OBPL]]></LICENSETYPE>
 <!--0CD06AFA024342CD94FDD9AB1ECDFC14-->  <AUTHOR><![CDATA[Openbravo S.L.]]></AUTHOR>
