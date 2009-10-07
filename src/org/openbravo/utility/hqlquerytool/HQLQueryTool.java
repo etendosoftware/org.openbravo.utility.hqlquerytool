@@ -169,8 +169,8 @@ public class HQLQueryTool extends HttpSecureAppServlet {
       if (complete) {
         return printBaseOBObject(bob);
       } else {
-        return bob.getId() + " [identifier: " + bob.getIdentifier() + ", entity: "
-            + bob.getEntityName() + "]";
+        return getEntityLink(bob, bob.getId() + " [identifier: " + bob.getIdentifier()
+            + ", entity: " + bob.getEntityName() + "]");
       }
     }
     return value.toString();
@@ -194,14 +194,21 @@ public class HQLQueryTool extends HttpSecureAppServlet {
       if (value != null) {
         sb.append(", ");
         if (value instanceof BaseOBObject) {
-          value = ((BaseOBObject) value).getId() + " (" + ((BaseOBObject) value).getIdentifier()
-              + ")";
+          final BaseOBObject bobValue = (BaseOBObject) value;
+          value = getEntityLink(bobValue, bobValue.getId() + " (" + bobValue.getIdentifier() + ")");
+        } else if (p.isId()) {
+          value = getEntityLink(bob, (String) value);
         }
         sb.append(p.getName() + ": " + value);
       }
     }
     sb.append("]");
     return sb.toString();
+  }
+
+  private String getEntityLink(BaseOBObject bob, String title) {
+    return "<a target='_new' href='../ws/dal/" + bob.getEntityName() + "/" + bob.getId()
+        + "?template=bo.xslt'>" + title + "</a>";
   }
 
   private String getErrorResult(VariablesSecureApp vars, Throwable t) {
@@ -294,7 +301,7 @@ public class HQLQueryTool extends HttpSecureAppServlet {
     for (Entity entity : ModelProvider.getInstance().getModel()) {
       final HQLSimpleFieldProvider fp = new HQLSimpleFieldProvider();
       fp.setField("id", entity.getName());
-      fp.setField("name", entity.getName());
+      fp.setField("name", entity.getTableName() + " - " + entity.getName());
       fieldProviders.add(fp);
     }
     Collections.sort(fieldProviders, new FieldProviderComparator());
