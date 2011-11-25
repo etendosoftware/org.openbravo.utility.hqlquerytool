@@ -252,8 +252,9 @@ public class HQLQueryTool extends HttpSecureAppServlet {
     XmlDocument xmlDocument = null;
     xmlDocument = xmlEngine.readXmlTemplate(xmlTemplateName).createXmlDocument();
 
-    ToolBar toolbar = new ToolBar(this, vars.getLanguage(), "massInvoicing_W1", false, "", "", "",
-        false, "ad_forms", strReplaceWith, false, true);
+    ToolBar toolbar = new ToolBar(this, vars.getLanguage(),
+        "org.openbravo.utility.hqlquerytool.HQLQueryTool", false, "", "", "", false, "ad_forms",
+        strReplaceWith, false, true);
     toolbar.prepareSimpleToolBarTemplate();
     xmlDocument.setParameter("toolbar", toolbar.toString());
 
@@ -263,11 +264,12 @@ public class HQLQueryTool extends HttpSecureAppServlet {
       xmlDocument.setParameter("mainTabContainer", tabs.mainTabs());
       xmlDocument.setParameter("childTabContainer", tabs.childTabs());
       xmlDocument.setParameter("theme", vars.getTheme());
-      NavigationBar nav = new NavigationBar(this, vars.getLanguage(), "massInvoicing_W1.html",
-          classInfo.id, classInfo.type, strReplaceWith, tabs.breadcrumb());
+      NavigationBar nav = new NavigationBar(this, vars.getLanguage(),
+          "org.openbravo.utility.hqlquerytool.HQLQueryTool.html", classInfo.id, classInfo.type,
+          strReplaceWith, tabs.breadcrumb());
       xmlDocument.setParameter("navigationBar", nav.toString());
-      LeftTabsBar lBar = new LeftTabsBar(this, vars.getLanguage(), "massInvoicing_W1.html",
-          strReplaceWith);
+      LeftTabsBar lBar = new LeftTabsBar(this, vars.getLanguage(),
+          "org.openbravo.utility.hqlquerytool.HQLQueryTool.html", strReplaceWith);
       xmlDocument.setParameter("leftTabs", lBar.manualTemplate());
     } catch (Exception ex) {
       throw new ServletException(ex);
