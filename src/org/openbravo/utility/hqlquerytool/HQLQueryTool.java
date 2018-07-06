@@ -11,7 +11,7 @@
  * under the License. 
  * The Original Code is Openbravo ERP. 
  * The Initial Developer of the Original Code is Openbravo SLU 
- * All portions are Copyright (C) 2009-2017 Openbravo SLU 
+ * All portions are Copyright (C) 2009-2018 Openbravo SLU 
  * All Rights Reserved.
  * Contributor(s):  ______________________________________.
  ************************************************************************
@@ -30,7 +30,7 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import org.hibernate.Query;
+import org.hibernate.query.Query;
 import org.openbravo.base.model.Entity;
 import org.openbravo.base.model.ModelProvider;
 import org.openbravo.base.model.Property;
@@ -126,6 +126,7 @@ public class HQLQueryTool extends HttpSecureAppServlet {
         throw new IllegalStateException(
             "Only users with the System Administrator role can use this tool");
       }
+      @SuppressWarnings("rawtypes")
       final Query qry = session.createQuery(queryStr);
       qry.setMaxResults(10000);
       final List<FieldProvider> result = new ArrayList<FieldProvider>();
