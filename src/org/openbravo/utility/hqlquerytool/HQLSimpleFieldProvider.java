@@ -38,6 +38,7 @@ public class HQLSimpleFieldProvider implements FieldProvider {
    * 
    * @see org.openbravo.data.FieldProvider#getField(java.lang.String)
    */
+  @Override
   public String getField(String fieldName) {
     return properties.get(fieldName);
   }

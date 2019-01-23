@@ -59,8 +59,9 @@ import org.openbravo.xmlEngine.XmlDocument;
 public class HQLQueryTool extends HttpSecureAppServlet {
   private static final long serialVersionUID = 1L;
 
-  public void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException,
-      ServletException {
+  @Override
+  public void doPost(HttpServletRequest request, HttpServletResponse response)
+      throws IOException, ServletException {
 
     // Commands:
     // DEFAULT
@@ -179,7 +180,8 @@ public class HQLQueryTool extends HttpSecureAppServlet {
   }
 
   private String printBaseOBObject(BaseOBObject bob) {
-    final boolean derivedReadable = OBContext.getOBContext().getEntityAccessChecker()
+    final boolean derivedReadable = OBContext.getOBContext()
+        .getEntityAccessChecker()
         .isDerivedReadable(bob.getEntity());
     if (derivedReadable) {
       // only prints the identifier
@@ -209,7 +211,8 @@ public class HQLQueryTool extends HttpSecureAppServlet {
   }
 
   private String getEntityLink(BaseOBObject bob, String title) {
-    String contextName = OBPropertiesProvider.getInstance().getOpenbravoProperties()
+    String contextName = OBPropertiesProvider.getInstance()
+        .getOpenbravoProperties()
         .getProperty("context.name");
     return "<a target='_new' href='/" + contextName + "/ws/dal/" + bob.getEntityName() + "/"
         + bob.getId() + "?template=bo.xslt'>" + title + "</a>";
@@ -251,8 +254,9 @@ public class HQLQueryTool extends HttpSecureAppServlet {
       throws IOException, ServletException {
     String className = this.getClass().getName().toString();
     String xmlTemplateName = "org/openbravo/utility/hqlquerytool/HQLQueryTool";
-    if (log4j.isDebugEnabled())
+    if (log4j.isDebugEnabled()) {
       log4j.debug("Output: dataSheet");
+    }
     XmlDocument xmlDocument = null;
     xmlDocument = xmlEngine.readXmlTemplate(xmlTemplateName).createXmlDocument();
 
@@ -314,6 +318,7 @@ public class HQLQueryTool extends HttpSecureAppServlet {
     return fieldProviders.toArray(new FieldProvider[fieldProviders.size()]);
   }
 
+  @Override
   public String getServletInfo() {
     return "Servlet DalQueryTool.";
   } // end of getServletInfo() method
