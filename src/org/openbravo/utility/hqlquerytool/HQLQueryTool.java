@@ -11,7 +11,7 @@
  * under the License. 
  * The Original Code is Openbravo ERP. 
  * The Initial Developer of the Original Code is Openbravo SLU 
- * All portions are Copyright (C) 2009 Openbravo SLU 
+ * All portions are Copyright (C) 2009-2018 Openbravo SLU 
  * All Rights Reserved.
  * Contributor(s):  ______________________________________.
  ************************************************************************
@@ -30,12 +30,13 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import org.hibernate.Query;
+import org.hibernate.query.Query;
 import org.openbravo.base.model.Entity;
 import org.openbravo.base.model.ModelProvider;
 import org.openbravo.base.model.Property;
 import org.openbravo.base.secureApp.HttpSecureAppServlet;
 import org.openbravo.base.secureApp.VariablesSecureApp;
+import org.openbravo.base.session.OBPropertiesProvider;
 import org.openbravo.base.structure.BaseOBObject;
 import org.openbravo.dal.core.OBContext;
 import org.openbravo.dal.service.OBDal;
@@ -58,8 +59,9 @@ import org.openbravo.xmlEngine.XmlDocument;
 public class HQLQueryTool extends HttpSecureAppServlet {
   private static final long serialVersionUID = 1L;
 
-  public void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException,
-      ServletException {
+  @Override
+  public void doPost(HttpServletRequest request, HttpServletResponse response)
+      throws IOException, ServletException {
 
     // Commands:
     // DEFAULT
@@ -125,6 +127,7 @@ public class HQLQueryTool extends HttpSecureAppServlet {
         throw new IllegalStateException(
             "Only users with the System Administrator role can use this tool");
       }
+      @SuppressWarnings("rawtypes")
       final Query qry = session.createQuery(queryStr);
       qry.setMaxResults(10000);
       final List<FieldProvider> result = new ArrayList<FieldProvider>();
@@ -177,7 +180,8 @@ public class HQLQueryTool extends HttpSecureAppServlet {
   }
 
   private String printBaseOBObject(BaseOBObject bob) {
-    final boolean derivedReadable = OBContext.getOBContext().getEntityAccessChecker()
+    final boolean derivedReadable = OBContext.getOBContext()
+        .getEntityAccessChecker()
         .isDerivedReadable(bob.getEntity());
     if (derivedReadable) {
       // only prints the identifier
@@ -207,8 +211,11 @@ public class HQLQueryTool extends HttpSecureAppServlet {
   }
 
   private String getEntityLink(BaseOBObject bob, String title) {
-    return "<a target='_new' href='../ws/dal/" + bob.getEntityName() + "/" + bob.getId()
-        + "?template=bo.xslt'>" + title + "</a>";
+    String contextName = OBPropertiesProvider.getInstance()
+        .getOpenbravoProperties()
+        .getProperty("context.name");
+    return "<a target='_new' href='/" + contextName + "/ws/dal/" + bob.getEntityName() + "/"
+        + bob.getId() + "?template=bo.xslt'>" + title + "</a>";
   }
 
   private String getErrorResult(VariablesSecureApp vars, Throwable t) {
@@ -227,7 +234,7 @@ public class HQLQueryTool extends HttpSecureAppServlet {
       }
       sb.append(stackTrace);
       throwable = throwable.getCause();
-      if (throwables.contains(throwables)) {
+      if (throwables.contains(throwable)) {
         break;
       }
     }
@@ -247,13 +254,15 @@ public class HQLQueryTool extends HttpSecureAppServlet {
       throws IOException, ServletException {
     String className = this.getClass().getName().toString();
     String xmlTemplateName = "org/openbravo/utility/hqlquerytool/HQLQueryTool";
-    if (log4j.isDebugEnabled())
+    if (log4j.isDebugEnabled()) {
       log4j.debug("Output: dataSheet");
+    }
     XmlDocument xmlDocument = null;
     xmlDocument = xmlEngine.readXmlTemplate(xmlTemplateName).createXmlDocument();
 
-    ToolBar toolbar = new ToolBar(this, vars.getLanguage(), "massInvoicing_W1", false, "", "", "",
-        false, "ad_forms", strReplaceWith, false, true);
+    ToolBar toolbar = new ToolBar(this, vars.getLanguage(),
+        "org.openbravo.utility.hqlquerytool.HQLQueryTool", false, "", "", "", false, "ad_forms",
+        strReplaceWith, false, true);
     toolbar.prepareSimpleToolBarTemplate();
     xmlDocument.setParameter("toolbar", toolbar.toString());
 
@@ -263,11 +272,12 @@ public class HQLQueryTool extends HttpSecureAppServlet {
       xmlDocument.setParameter("mainTabContainer", tabs.mainTabs());
       xmlDocument.setParameter("childTabContainer", tabs.childTabs());
       xmlDocument.setParameter("theme", vars.getTheme());
-      NavigationBar nav = new NavigationBar(this, vars.getLanguage(), "massInvoicing_W1.html",
-          classInfo.id, classInfo.type, strReplaceWith, tabs.breadcrumb());
+      NavigationBar nav = new NavigationBar(this, vars.getLanguage(),
+          "org.openbravo.utility.hqlquerytool.HQLQueryTool.html", classInfo.id, classInfo.type,
+          strReplaceWith, tabs.breadcrumb());
       xmlDocument.setParameter("navigationBar", nav.toString());
-      LeftTabsBar lBar = new LeftTabsBar(this, vars.getLanguage(), "massInvoicing_W1.html",
-          strReplaceWith);
+      LeftTabsBar lBar = new LeftTabsBar(this, vars.getLanguage(),
+          "org.openbravo.utility.hqlquerytool.HQLQueryTool.html", strReplaceWith);
       xmlDocument.setParameter("leftTabs", lBar.manualTemplate());
     } catch (Exception ex) {
       throw new ServletException(ex);
@@ -308,6 +318,7 @@ public class HQLQueryTool extends HttpSecureAppServlet {
     return fieldProviders.toArray(new FieldProvider[fieldProviders.size()]);
   }
 
+  @Override
   public String getServletInfo() {
     return "Servlet DalQueryTool.";
   } // end of getServletInfo() method
