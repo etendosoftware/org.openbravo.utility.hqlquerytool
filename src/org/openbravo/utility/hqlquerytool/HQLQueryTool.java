@@ -11,7 +11,7 @@
  * under the License. 
  * The Original Code is Openbravo ERP. 
  * The Initial Developer of the Original Code is Openbravo SLU 
- * All portions are Copyright (C) 2009 Openbravo SLU 
+ * All portions are Copyright (C) 2009-2017 Openbravo SLU 
  * All Rights Reserved.
  * Contributor(s):  ______________________________________.
  ************************************************************************
@@ -227,7 +227,7 @@ public class HQLQueryTool extends HttpSecureAppServlet {
       }
       sb.append(stackTrace);
       throwable = throwable.getCause();
-      if (throwables.contains(throwables)) {
+      if (throwables.contains(throwable)) {
         break;
       }
     }
