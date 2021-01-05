@@ -36,6 +36,7 @@ import org.openbravo.base.model.ModelProvider;
 import org.openbravo.base.model.Property;
 import org.openbravo.base.secureApp.HttpSecureAppServlet;
 import org.openbravo.base.secureApp.VariablesSecureApp;
+import org.openbravo.base.session.OBPropertiesProvider;
 import org.openbravo.base.structure.BaseOBObject;
 import org.openbravo.dal.core.OBContext;
 import org.openbravo.dal.service.OBDal;
@@ -207,8 +208,10 @@ public class HQLQueryTool extends HttpSecureAppServlet {
   }
 
   private String getEntityLink(BaseOBObject bob, String title) {
-    return "<a target='_new' href='../ws/dal/" + bob.getEntityName() + "/" + bob.getId()
-        + "?template=bo.xslt'>" + title + "</a>";
+    String contextName = OBPropertiesProvider.getInstance().getOpenbravoProperties()
+        .getProperty("context.name");
+    return "<a target='_new' href='/" + contextName + "/ws/dal/" + bob.getEntityName() + "/"
+        + bob.getId() + "?template=bo.xslt'>" + title + "</a>";
   }
 
   private String getErrorResult(VariablesSecureApp vars, Throwable t) {
