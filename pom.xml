@@ -1,0 +1,57 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+  <groupId>org.openbravo</groupId>
+  <artifactId>utility.hqlquerytool</artifactId>
+  <version>1.0.7</version>
+  <packaging>pom</packaging>
+
+  <name>Openbravo HQL Query Tool</name>
+  <url>http://smfconsulting.es</url>
+
+  <dependencies>
+    <dependency>
+      <groupId>com.smf.classic.core</groupId>
+      <artifactId>ob</artifactId>
+      <version>[20.2.1,20.2.2)</version>
+      <type>zip</type>
+    </dependency>
+  </dependencies>
+
+  <repositories>
+    <repository>
+      <id>futitcloud</id>
+      <url>https://repo.futit.cloud/repository/maven-public-releases/</url>
+    </repository>
+  </repositories>
+
+  <distributionManagement>
+    <repository>
+      <id>futitcloud</id>
+      <url>https://repo.futit.cloud/repository/maven-public-releases/</url>
+    </repository>
+  </distributionManagement>
+
+  <build>
+    <plugins>
+      <plugin>
+        <artifactId>maven-assembly-plugin</artifactId>
+        <configuration>
+          <appendAssemblyId>false</appendAssemblyId>
+          <finalName>${project.groupId}.${project.artifactId}</finalName>
+          <descriptors>
+            <descriptor>${basedir}/assembly.xml</descriptor>
+          </descriptors>
+        </configuration>
+        <executions>
+          <execution>
+            <id>create-archive</id>
+            <phase>package</phase>
+            <goals>
+              <goal>single</goal>
+            </goals>
+          </execution>
+        </executions>
+      </plugin>
+    </plugins>
+  </build>
+</project>
