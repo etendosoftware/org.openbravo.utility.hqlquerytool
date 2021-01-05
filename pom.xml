@@ -2,7 +2,7 @@
   <modelVersion>4.0.0</modelVersion>
   <groupId>org.openbravo</groupId>
   <artifactId>utility.hqlquerytool</artifactId>
-  <version>1.0.7</version>
+  <version>1.0.8</version>
   <packaging>pom</packaging>
 
   <name>Openbravo HQL Query Tool</name>
