@@ -299,7 +299,26 @@ overflow:auto;
                                 </td>
                                 <td class="Combo_ContentCell" colspan="2" rowspan="3">
                                 <div class="LabelText">View properties per entity:</div>
-                                <select name="inpEntity"
+                                    <input type="text" id="filterEntity" onkeyup="filterFunction()">
+                                    <script>
+                                        function filterFunction() {
+                                          var input, filter, select, option, i;
+                                          input = document.getElementById("filterEntity");
+                                          filter = input.value.toUpperCase();
+                                          select = document.getElementById("inpEntity");
+                                          option = select.getElementsByTagName("option");
+
+                                          for (i = 0; i < option.length; i++) {
+                                            txtValue = option[i].textContent || option[i].innerText;
+                                            if (txtValue.toUpperCase().indexOf(filter) > -1) {
+                                              option[i].style.display = "";
+                                            } else {
+                                              option[i].style.display = "none";
+                                            }
+                                          }
+                                        }
+                                    </script>
+                                    <select name="inpEntity"
                                     onkeypress="changeToEditingMode('onkeypress');"
                                     onchange="changeToEditingMode('onchange', this);logChanges(this);loadPropertyList();return true;"
                                     class="ComboKey Combo_TwoCells_width" id="inpEntity">
