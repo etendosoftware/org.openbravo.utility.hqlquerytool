@@ -298,7 +298,7 @@ overflow:auto;
                                    <TEXTAREA id="inpHQLQuery" name="inpHQLQuery" class="dojoValidateValid" required="false" maxlength="20000" name="inphelp" onkeyup="" onkeydown="changeToEditingMode('onkeydown');" onkeypress="changeToEditingMode('onkeypress');" oncut="changeToEditingMode('oncut');" onpaste="changeToEditingMode('onpaste');" oncontextmenu="changeToEditingMode('oncontextmenu');" onchange="logChanges(this);return true;" style="width: 570px; min-width: 570px; height: 180px; min-height: 180px; resize: both"></TEXTAREA>
                                 </td>
                                 <td class="Combo_ContentCell" colspan="2" rowspan="3">
-                                <div class="LabelText">View properties per entity:</div>
+                                    <div class="LabelText">Filter Entities:</div>
                                     <input type="text" id="filterEntity" onkeyup="filterFunction()">
                                     <script>
                                         function filterFunction() {
@@ -318,6 +318,18 @@ overflow:auto;
                                           }
                                         }
                                     </script>
+                                    <button id="copyButton" type="button" title="Copy selected entity" >📋</button>
+                                    <script>
+                                        // Añade el evento de clic al botón
+                                        document.getElementById('copyButton').addEventListener('click', function() {
+                                            // Obtiene el valor seleccionado del selector
+                                            var selectedValue = document.getElementById('inpEntity').value;
+                                        
+                                            /// Copia el valor al portapapeles
+                                            navigator.clipboard.writeText(selectedValue);
+                                        });
+                                        </script>
+                                    <div class="LabelText">View properties per entity:</div>
                                     <select name="inpEntity"
                                     onkeypress="changeToEditingMode('onkeypress');"
                                     onchange="changeToEditingMode('onchange', this);logChanges(this);loadPropertyList();return true;"
