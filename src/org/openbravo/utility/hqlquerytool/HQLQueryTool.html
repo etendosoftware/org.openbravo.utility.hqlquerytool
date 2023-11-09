@@ -299,7 +299,7 @@ overflow:auto;
                                 </td>
                                 <td class="Combo_ContentCell" colspan="2" rowspan="3">
                                     <div class="LabelText">Filter Entities:</div>
-                                    <input type="text" id="filterEntity" onkeyup="filterFunction()">
+                                    <input type="text" id="filterEntity" onkeyup="filterFunction()" onkeydown="return event.key !== 'Enter'" >
                                     <script>
                                         function filterFunction() {
                                           var input, filter, select, option, i;
