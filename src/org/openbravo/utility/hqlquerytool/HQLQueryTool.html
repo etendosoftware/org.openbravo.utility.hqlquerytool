@@ -320,12 +320,12 @@ overflow:auto;
                                     </script>
                                     <button id="copyButton" type="button" title="Copy selected entity" >📋</button>
                                     <script>
-                                        // Añade el evento de clic al botón
+                                        // adds the onClick event to the button
                                         document.getElementById('copyButton').addEventListener('click', function() {
-                                            // Obtiene el valor seleccionado del selector
+                                            // Get the selected entity
                                             var selectedValue = document.getElementById('inpEntity').value;
                                         
-                                            /// Copia el valor al portapapeles
+                                            /// Copy the selected entity to the clipboard
                                             navigator.clipboard.writeText(selectedValue);
                                         });
                                         </script>
