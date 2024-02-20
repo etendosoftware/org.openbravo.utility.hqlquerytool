@@ -298,8 +298,39 @@ overflow:auto;
                                    <TEXTAREA id="inpHQLQuery" name="inpHQLQuery" class="dojoValidateValid" required="false" maxlength="20000" name="inphelp" onkeyup="" onkeydown="changeToEditingMode('onkeydown');" onkeypress="changeToEditingMode('onkeypress');" oncut="changeToEditingMode('oncut');" onpaste="changeToEditingMode('onpaste');" oncontextmenu="changeToEditingMode('oncontextmenu');" onchange="logChanges(this);return true;" style="width: 570px; min-width: 570px; height: 180px; min-height: 180px; resize: both"></TEXTAREA>
                                 </td>
                                 <td class="Combo_ContentCell" colspan="2" rowspan="3">
-                                <div class="LabelText">View properties per entity:</div>
-                                <select name="inpEntity"
+                                    <div class="LabelText">Filter Entities:</div>
+                                    <input type="text" id="filterEntity" onkeyup="filterFunction()" onkeydown="return event.key !== 'Enter'" >
+                                    <script>
+                                        function filterFunction() {
+                                          var input, filter, select, option, i;
+                                          input = document.getElementById("filterEntity");
+                                          filter = input.value.toUpperCase();
+                                          select = document.getElementById("inpEntity");
+                                          option = select.getElementsByTagName("option");
+
+                                          for (i = 0; i < option.length; i++) {
+                                            txtValue = option[i].textContent || option[i].innerText;
+                                            if (txtValue.toUpperCase().indexOf(filter) > -1) {
+                                              option[i].style.display = "";
+                                            } else {
+                                              option[i].style.display = "none";
+                                            }
+                                          }
+                                        }
+                                    </script>
+                                    <button id="copyButton" type="button" title="Copy selected entity" >📋</button>
+                                    <script>
+                                        // adds the onClick event to the button
+                                        document.getElementById('copyButton').addEventListener('click', function() {
+                                            // Get the selected entity
+                                            var selectedValue = document.getElementById('inpEntity').value;
+                                        
+                                            /// Copy the selected entity to the clipboard
+                                            navigator.clipboard.writeText(selectedValue);
+                                        });
+                                        </script>
+                                    <div class="LabelText">View properties per entity:</div>
+                                    <select name="inpEntity"
                                     onkeypress="changeToEditingMode('onkeypress');"
                                     onchange="changeToEditingMode('onchange', this);logChanges(this);loadPropertyList();return true;"
                                     class="ComboKey Combo_TwoCells_width" id="inpEntity">
